@@ -1,0 +1,32 @@
+:host {
+  font-family: Kanit;
+  height: 100%;
+  display: flex;
+  flex-direction: column; 
+
+  #header {
+    display: flex;
+    
+    width: 100%;
+    height: 80px;
+    justify-content: center;
+    border-bottom: 2px solid orange;
+
+    .center {
+      width: 100%;
+    }
+    
+    .logo {
+      padding: 0px 110px;
+      margin: auto 0;
+    } 
+  }
+
+  #main-content {
+    position: relative;
+    background-image: url('../assets/background.jpg');
+    background-size: cover;
+    padding: 70px 110px;
+    flex-grow: 4;
+  }
+}

@@ -1,0 +1,57 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-right: 32px;
+
+    .header {
+        background-color: rgb(12, 131, 151);
+        color: white;
+        text-align: center;
+        font-size: 14px;
+        padding: 14px;
+    }
+
+    form {
+        width: 280px;
+        padding: 31px 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        padding: 3px 0px;
+        display: contents;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    input{
+        border: none;
+        border-bottom: 2px solid rgb(214,210,206);
+        height: 32px;
+        margin-bottom: 32px;
+    }
+
+    input.ng-invalid.ng-touched {
+        border-bottom-color: rgb(192, 9, 9);
+    }
+
+    input:focus{
+        outline: none;
+    }
+
+    button {
+        width: 200px;
+        height: 42px;
+        color: white;
+        background-color: rgb(238, 112, 51);
+        border-radius: 3px;
+        align-self: flex-end;
+    }
+    
+    button, button:focus {
+        border: 0px;
+        outline-width: 0px;
+    };
+}

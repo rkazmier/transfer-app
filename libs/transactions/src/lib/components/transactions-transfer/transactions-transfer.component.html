@@ -1,0 +1,17 @@
+<div class="header"><span class="icon"></span>Make a Transfer</div>
+<form [formGroup]="transferForm"  (ngSubmit)="onSubmit()">
+
+    <label>
+        FROM ACCOUNT
+        <input type="text" formControlName="fromAccount" aria-label="from account"/>
+    </label>
+    <label>
+        TO ACCOUNT
+        <input type="text" formControlName="toAccount" required aria-label="to account"/>
+    </label>
+    <label>
+        AMOUNT
+        <input type="text" formControlName="amount" placeholder="0.00" required aria-label="amount"/>
+    </label>
+    <button type="submit" [disabled]="!transferForm.valid" aria-label="submit">Submit</button>
+</form>

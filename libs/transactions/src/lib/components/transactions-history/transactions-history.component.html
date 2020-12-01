@@ -1,0 +1,29 @@
+<div class="header">Recent Transactions</div>
+<div class="toolbar"> 
+    <input type="search" [formControl]="search" placeholder="Search by typing..." aria-label="Search by typing..."/> 
+    <b>Sort by</b>
+    <button (click)="onDateClick()" aria-label="Sort by date">DATE 
+        <span *ngIf="(viewSettings$ | async).sortingKeyName === 'DATE'">
+            {{(viewSettings$ | async).sortingOrder === 'ASC' ? '&#9650;' : '&#9660;'}}
+        </span>
+    </button>
+    <button (click)="onBeneficiaryClick()" aria-label="Sort by beneficiary">BENEFICIARY
+        <span *ngIf="(viewSettings$ | async).sortingKeyName === 'BENEFICIARY'">
+            {{(viewSettings$ | async).sortingOrder === 'ASC' ? '&#9650;' : '&#9660;'}}
+        </span>
+    </button>
+    <button (click)="onAmountClick()" aria-label="Sort by amount">AMOUNT
+        <span *ngIf="(viewSettings$ | async).sortingKeyName === 'AMOUNT'">
+            {{(viewSettings$ | async).sortingOrder === 'ASC' ? '&#9650;' : '&#9660;'}}
+        </span>
+    </button>
+</div>
+
+<ul> 
+    <li *ngFor="let operation of transactions$ | async" class="transaction-item">
+        <div class="head" [ngStyle]="{ 'background-color': operation.categoryCode }" ></div>
+        <div class="row-item"> {{operation.dates.valueDate | date:'MMM. d'}} </div>
+        <div class="row-item description"><p class="bold">{{ operation.merchant.name}}</p> <p>{{operation.transaction.type}}</p></div>
+        <div class="row-item bold">{{operation.transaction.amountCurrency.amount | currency:operation.transaction.amountCurrency.currencyCode}}</div>
+    </li>
+</ul>

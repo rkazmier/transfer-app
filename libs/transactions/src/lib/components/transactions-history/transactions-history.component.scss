@@ -1,0 +1,111 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: white;
+    height: 100%;
+
+    .header {
+        background-color: rgb(12, 131, 151);
+        color: white;
+        text-align: center;
+        font-size: 14px;
+        padding: 23px;
+    }
+
+    .toolbar{
+        display: flex;
+        padding: 17px;
+
+        input {
+            border: none;
+            border-bottom: 2px solid rgb(214,210,206);
+            height: 32px;
+            width: 280px;
+            margin-left: 10px;
+            padding-left: 10px;
+        }
+        input:focus{
+            outline: none;
+        }
+
+        b {
+            padding: 8px 16px 8px 32px;
+        }
+
+        button {
+            background-color: white;
+            border: 1px solid rgb(214,210,206);
+            padding: 0px 10px;
+        };
+        button:last-of-type {
+            border-left-width: 0px;
+        }
+        button:first-of-type {
+            border-right-width: 0px;
+        }
+        button, button:focus {
+            outline-width: 0px;
+        };
+    }
+
+    ul {
+        margin: 0px 17px 31px 17px;
+        padding: 0px;
+        height: 500px;
+        overflow-y: auto;
+        flex-grow: 4;
+    }
+
+    li.transaction-item {
+        height: 70px;
+        display: flex;
+
+        .head {
+            width: 10px;
+        }
+
+        .row-item {
+            padding: 25px 0px 25px 25px;
+            border-top: 1px;
+            border-bottom: 0px;
+            border-left: 0px;
+            border-right: 0px;
+            border-color: rgb(214,210,206);;
+            border-style: solid;
+            min-width: 65px;
+        }
+
+        .row-item:last-of-type {
+            border-right: 1px;
+            border-color: rgb(214,210,206);;
+            border-style: solid;
+            padding-right: 20px;
+            text-align: right;
+            min-width: 160px;
+        }
+
+        .row-item.description {
+            flex-grow: 4;
+            min-width: 300px;
+            padding-top: 17px;
+            padding-bottom: 17px;
+            p {
+                margin: 0px;
+            }
+        }
+    }
+    
+    .bold {
+        font-weight: bold;
+    }
+
+    li.transaction-item:last-of-type {
+        border-top: 0px;
+        border-left: 0px;
+        border-right: 0px;
+        border-bottom: 1px;
+        border-color: rgb(214,210,206);;
+        border-style: solid;
+    }
+}
