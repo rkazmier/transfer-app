@@ -24,17 +24,17 @@
   },
   "projects": {
     "demo-app": {
-      "tags": []
+      "tags": ["type:app"]
     },
     "demo-app-e2e": {
       "tags": [],
       "implicitDependencies": ["demo-app"]
     },
     "transactions": {
-      "tags": []
+      "tags": ["type:feature"]
     },
     "notifications": {
-      "tags": []
+      "tags": ["type:service"]
     }
   }
 }

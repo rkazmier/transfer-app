@@ -60,9 +60,19 @@
         "allow": [],
         "depConstraints": [
           {
-            "sourceTag": "*",
-            "onlyDependOnLibsWithTags": ["*"]
-          }
+            "sourceTag": "type:app",
+            "onlyDependOnLibsWithTags": ["type:feature", "type:service", "type:util", "type:alone"]
+          },
+          {
+            "sourceTag": "type:feature",
+            "onlyDependOnLibsWithTags": ["type:util", "type:alone"]
+          },
+          {
+            "sourceTag": "type:service",
+            "onlyDependOnLibsWithTags": ["type:util", "type:alone"]
+          },
+          { "sourceTag": "type:util", "onlyDependOnLibsWithTags": ["type:util", "type:alone"] },
+          { "sourceTag": "type:alone", "onlyDependOnLibsWithTags": [] }
         ]
       }
     ],

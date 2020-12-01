@@ -29,7 +29,7 @@ export class TransactionsTransferComponent implements OnInit, OnDestroy {
     this.facade.balance$.pipe(
       takeUntil(this.destroy$), 
       map((balance) => ({
-        fromAccount: `Free Checking(4692) — ${balance} EUR`, 
+        fromAccount: `Free Checking(4692) — ${Number(balance).toFixed(2)} EUR`, 
         toAccount: '', 
         amount: '',
         balance

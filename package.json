@@ -2,11 +2,14 @@
   "name": "nrwl-workspace",
   "version": "0.0.0",
   "license": "MIT",
+  "engines": {
+    "node": "14.15.1"
+  },
   "scripts": {
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
     "nx": "nx",
-    "start": "ng serve",
+    "start": "ng serve --port 3232",
     "build": "ng build",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",

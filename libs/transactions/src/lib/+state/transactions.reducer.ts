@@ -44,7 +44,7 @@ const transactionsReducer = createReducer(
   on(TransactionsActions.makeTransactionSuccess, (state, { transaction }) =>
     transactionsAdapter.setOne(transaction, { 
       ...state, 
-      balance: state.balance - Number(transaction.transaction.amountCurrency.amount) 
+      balance: state.balance + Number(transaction.transaction.amountCurrency.amount) 
     })
   )
 );
