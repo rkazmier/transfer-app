@@ -1,19 +1,13 @@
-import { TransactionsEntity } from './transactions.models';
 import {
-  State,
   transactionsAdapter,
   initialState,
 } from './transactions.reducer';
 import * as TransactionsSelectors from './transactions.selectors';
+import { createTransactionsEntity } from '../tests.util';
 
 describe('Transactions Selectors', () => {
   const ERROR_MSG = 'No Error Available';
   const getTransactionsId = (it) => it['id'];
-  const createTransactionsEntity = (id: string, name = '') =>
-    ({
-      id,
-      name: name || `name-${id}`,
-    } as TransactionsEntity);
 
   let state;
 
@@ -21,13 +15,13 @@ describe('Transactions Selectors', () => {
     state = {
       transactions: transactionsAdapter.setAll(
         [
-          createTransactionsEntity('PRODUCT-AAA'),
-          createTransactionsEntity('PRODUCT-BBB'),
-          createTransactionsEntity('PRODUCT-CCC'),
+          createTransactionsEntity('test-1','PRODUCT-AAA', 123),
+          createTransactionsEntity('test-2','PRODUCT-BBB', 234),
+          createTransactionsEntity('test-3','PRODUCT-CCC', 345),
         ],
         {
           ...initialState,
-          selectedId: 'PRODUCT-BBB',
+          selectedId: 'test-2',
           error: ERROR_MSG,
           loaded: true,
         }
@@ -41,14 +35,14 @@ describe('Transactions Selectors', () => {
       const selId = getTransactionsId(results[1]);
 
       expect(results.length).toBe(3);
-      expect(selId).toBe('PRODUCT-BBB');
+      expect(selId).toBe('test-2');
     });
 
     it('getSelected() should return the selected Entity', () => {
       const result = TransactionsSelectors.getSelected(state);
       const selId = getTransactionsId(result);
 
-      expect(selId).toBe('PRODUCT-BBB');
+      expect(selId).toBe('test-2');
     });
 
     it("getTransactionsLoaded() should return the current 'loaded' status", () => {

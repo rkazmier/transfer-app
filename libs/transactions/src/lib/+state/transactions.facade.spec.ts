@@ -7,18 +7,16 @@ import { StoreModule, Store } from '@ngrx/store';
 
 import { NxModule } from '@nrwl/angular';
 
-import { TransactionsEntity } from './transactions.models';
 import { TransactionsEffects } from './transactions.effects';
 import { TransactionsFacade } from './transactions.facade';
 
-import * as TransactionsSelectors from './transactions.selectors';
 import * as TransactionsActions from './transactions.actions';
 import {
   TRANSACTIONS_FEATURE_KEY,
   State,
-  initialState,
   reducer,
 } from './transactions.reducer';
+import { createTransactionsEntity } from '../tests.util';
 
 interface TestSchema {
   transactions: State;
@@ -27,11 +25,6 @@ interface TestSchema {
 describe('TransactionsFacade', () => {
   let facade: TransactionsFacade;
   let store: Store<TestSchema>;
-  const createTransactionsEntity = (id: string, name = '') =>
-    ({
-      id,
-      name: name || `name-${id}`,
-    } as TransactionsEntity);
 
   beforeEach(() => {});
 
@@ -57,8 +50,8 @@ describe('TransactionsFacade', () => {
       class RootModule {}
       TestBed.configureTestingModule({ imports: [RootModule] });
 
-      store = TestBed.get(Store);
-      facade = TestBed.get(TransactionsFacade);
+      store = TestBed.inject(Store);
+      facade = TestBed.inject(TransactionsFacade);
     });
 
     /**
@@ -77,7 +70,7 @@ describe('TransactionsFacade', () => {
         list = await readFirst(facade.allTransactions$);
         isLoaded = await readFirst(facade.loaded$);
 
-        expect(list.length).toBe(0);
+        expect(list.length).toBe(11);
         expect(isLoaded).toBe(true);
 
         done();
@@ -100,8 +93,8 @@ describe('TransactionsFacade', () => {
         facade.dispatch(
           TransactionsActions.loadTransactionsSuccess({
             transactions: [
-              createTransactionsEntity('AAA'),
-              createTransactionsEntity('BBB'),
+              createTransactionsEntity('test-1', 'AAA', 45),
+              createTransactionsEntity('test-2', 'BBB', 678),
             ],
           })
         );

@@ -1,21 +1,16 @@
-import { TransactionsEntity } from './transactions.models';
 import * as TransactionsActions from './transactions.actions';
 import { State, initialState, reducer } from './transactions.reducer';
+import { createTransactionsEntity } from '../tests.util';
 
 describe('Transactions Reducer', () => {
-  const createTransactionsEntity = (id: string, name = '') =>
-    ({
-      id,
-      name: name || `name-${id}`,
-    } as TransactionsEntity);
 
   beforeEach(() => {});
 
   describe('valid Transactions actions', () => {
     it('loadTransactionsSuccess should return set the list of known Transactions', () => {
       const transactions = [
-        createTransactionsEntity('PRODUCT-AAA'),
-        createTransactionsEntity('PRODUCT-zzz'),
+        createTransactionsEntity('test-1', 'PRODUCT-AAA', 12),
+        createTransactionsEntity('test-2', 'PRODUCT-zzz', 34),
       ];
       const action = TransactionsActions.loadTransactionsSuccess({
         transactions,

@@ -10,6 +10,7 @@ import { TransactionsTransferComponent } from './components/transactions-transfe
 import { TransactionsHistoryComponent } from './components/transactions-history/transactions-history.component';
 import { TransactionsPageComponent } from './components/transactions-page/transactions-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ),
     EffectsModule.forFeature([TransactionsEffects]),
   ],
+  schemas: [NO_ERRORS_SCHEMA],
   declarations: [
     TransactionsPageComponent,
     TransactionsTransferComponent,

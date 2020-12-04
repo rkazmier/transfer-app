@@ -14,6 +14,9 @@ export class TransactionsEffects {
       ofType(TransactionsActions.loadTransactions),
       fetch({
         run: (action) => {
+          
+
+
           return TransactionsActions.loadTransactionsSuccess({
             transactions: mock.data.map<TransactionsEntity>(
               (operation, id) => ({ ...operation, id })
