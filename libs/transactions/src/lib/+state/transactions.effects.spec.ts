@@ -1,4 +1,5 @@
 import { TestBed, async } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { Observable } from 'rxjs';
 
@@ -17,7 +18,10 @@ describe('TransactionsEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NxModule.forRoot()],
+      imports: [
+        NxModule.forRoot(),
+        HttpClientTestingModule
+      ],
       providers: [
         TransactionsEffects,
         DataPersistence,
@@ -26,7 +30,7 @@ describe('TransactionsEffects', () => {
       ],
     });
 
-    effects = TestBed.get(TransactionsEffects);
+    effects = TestBed.inject(TransactionsEffects);
   });
 
   describe('loadTransactions$', () => {

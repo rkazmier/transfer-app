@@ -1,34 +1,31 @@
 import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { fetch } from '@nrwl/angular';
+import { createEffect, Actions, ofType, Effect } from '@ngrx/effects';
 import * as TransactionsActions from './transactions.actions';
-import * as mock from '../data-mock/transactions.json';
 import { TransactionsEntity } from './transactions.models';
-import { map } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { createTransaction } from '../transactions.util';
+import { TransactionsService } from '../services/transactions.service';
+import { OperationModel } from '../data.model';
+import { of } from 'rxjs';
 
 @Injectable()
 export class TransactionsEffects {
-  loadTransactions$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(TransactionsActions.loadTransactions),
-      fetch({
-        run: (action) => {
-          
 
-
-          return TransactionsActions.loadTransactionsSuccess({
-            transactions: mock.data.map<TransactionsEntity>(
+  @Effect() loadTransactions$ = this.actions$.pipe(
+    ofType(TransactionsActions.loadTransactions),
+    switchMap(() =>
+      this.service.getTransactions<{data: OperationModel[]}>().pipe(
+        map(res => {
+          return TransactionsActions.loadTransactionsSuccess({ 
+            transactions: res.data.map<TransactionsEntity>(
               (operation, id) => ({ ...operation, id })
             )
           });
-        },
-
-        onError: (action, error) => {
-          console.error('Error', error);
-          return TransactionsActions.loadTransactionsFailure({ error });
-        },
-      })
+        }),
+        catchError(({ message }: Error) =>
+          of(TransactionsActions.loadTransactionsFailure({ error: message }))
+        )
+      )
     )
   );
 
@@ -42,5 +39,5 @@ export class TransactionsEffects {
     )
   );
 
-  constructor(private actions$: Actions) {}
+  constructor(private actions$: Actions, private service: TransactionsService) {}
 }

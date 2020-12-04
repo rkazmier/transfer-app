@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { readFirst } from '@nrwl/angular/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule, Store } from '@ngrx/store';
@@ -32,6 +33,7 @@ describe('TransactionsFacade', () => {
     beforeEach(() => {
       @NgModule({
         imports: [
+          HttpClientTestingModule,
           StoreModule.forFeature(TRANSACTIONS_FEATURE_KEY, reducer),
           EffectsModule.forFeature([TransactionsEffects]),
         ],
@@ -70,7 +72,7 @@ describe('TransactionsFacade', () => {
         list = await readFirst(facade.allTransactions$);
         isLoaded = await readFirst(facade.loaded$);
 
-        expect(list.length).toBe(11);
+        expect(list.length).toBe(0);
         expect(isLoaded).toBe(true);
 
         done();

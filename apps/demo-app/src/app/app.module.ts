@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NotificationsModule } from '@nrwl-workspace/notifications';
+import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import * as formModulesAggregator from './modules.aggregator';
 
@@ -17,6 +18,7 @@ import * as formModulesAggregator from './modules.aggregator';
     BrowserModule,
     AppRoutingModule,
     NotificationsModule,
+    HttpClientModule,
     StoreModule.forRoot(
       {},
       {
